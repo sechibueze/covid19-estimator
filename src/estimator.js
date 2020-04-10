@@ -1,16 +1,16 @@
-// const data = {
-//   region: {
-//     name: "Africa",
-//     avgAge: 19.7,
-//     avgDailyIncomeInUSD: 5,
-//     avgDailyIncomePopulation: 0.71
-//   },
-//   periodType: "days",
-//   timeToElapse: 58,
-//   reportedCases: 674,
-//   population: 66622705,
-//   totalHospitalBeds: 1380614
-// };
+const data = {
+  region: {
+    name: "Africa",
+    avgAge: 19.7,
+    avgDailyIncomeInUSD: 5,
+    avgDailyIncomePopulation: 0.71
+  },
+  periodType: "days",
+  timeToElapse: 58,
+  reportedCases: 674,
+  population: 66622705,
+  totalHospitalBeds: 1380614
+};
 
 /*******
  * **** UTILITY FUNCTIONS
@@ -56,7 +56,7 @@ const covid19ImpactEstimator = (data) => {
 
   const factor = getFactorFromDuration(time, unit);
   impact.infectionsByRequestedTime = impact.currentlyInfected * Math.pow(2, factor)
-  severeImpact.infectionsByRequestedTime = impact.currentlyInfected * Math.pow(2, factor)
+  severeImpact.infectionsByRequestedTime = severeImpact.currentlyInfected * Math.pow(2, factor)
   /**************************
    * ********* CHALLENGE 2
    */
@@ -69,8 +69,8 @@ const covid19ImpactEstimator = (data) => {
 
   // Based on the above, the totalHospitalBeds input data, and your severeCasesByRequestedTime,
   // estimate the number of available hospital beds for severe COVID - 19 positive patient
-  impact.hospitalBedsByRequestedTime = Math.trunc(impact.severeCasesByRequestedTime - (0.35 * input.totalHospitalBeds));
-  severeImpact.hospitalBedsByRequestedTime = Math.trunc(severeImpact.severeCasesByRequestedTime - (0.35 * input.totalHospitalBeds));
+  impact.hospitalBedsByRequestedTime = Math.trunc((0.35 * input.totalHospitalBeds) - impact.severeCasesByRequestedTime);
+  severeImpact.hospitalBedsByRequestedTime = Math.trunc((0.35 * input.totalHospitalBeds) - severeImpact.severeCasesByRequestedTime);
 
   /***************************
    * ********** CHALLENGE 3
@@ -96,7 +96,7 @@ const covid19ImpactEstimator = (data) => {
   // (infectionsByRequestedTime x 0.65 x 1.5) / 30;
   const elapsedTimeInDays = normalizeTimeInDays(time, unit);
 
-  impact.dollarsInFlight = Math.trunc((impact.infectionsByRequestedTime * 0.65 * input.region.avgDailyIncomeInUSD) / elapsedTimeInDays) / 30;
+  impact.dollarsInFlight = Math.trunc((impact.infectionsByRequestedTime * 0.65 * input.region.avgDailyIncomeInUSD) / elapsedTimeInDays);
   severeImpact.dollarsInFlight = Math.trunc((severeImpact.infectionsByRequestedTime * 0.65 * input.region.avgDailyIncomeInUSD) / elapsedTimeInDays);
 
 
@@ -106,5 +106,5 @@ const covid19ImpactEstimator = (data) => {
     severeImpact: severeImpact
   }
 };
-// console.log('Estimates :: ', covid19ImpactEstimator(data))
-export default covid19ImpactEstimator;
+console.log('Estimates :: ', covid19ImpactEstimator(data))
+// export default covid19ImpactEstimator;

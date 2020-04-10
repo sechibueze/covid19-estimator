@@ -12,7 +12,9 @@
 //   totalHospitalBeds: 1380614
 // };
 
-// Utility functions
+/*******
+ * **** UTILITY FUNCTIONS
+ */
 const normalizeTimeInDays = (time, unit = 'days') => {
   switch (unit) {
     case 'weeks':
@@ -70,6 +72,32 @@ const covid19ImpactEstimator = (data) => {
   impact.hospitalBedsByRequestedTime = Math.trunc(impact.severeCasesByRequestedTime - (0.35 * input.totalHospitalBeds));
   severeImpact.hospitalBedsByRequestedTime = Math.trunc(severeImpact.severeCasesByRequestedTime - (0.35 * input.totalHospitalBeds));
 
+  /***************************
+   * ********** CHALLENGE 3
+   */
+  // ch3, p1
+  // Determine 5 % of infectionsByRequestedTime.This is the estimated number of severe positive cases
+  // that will require ICU care.Represent this as casesForICUByRequestedTime and make it a part of your
+  // estimation output
+  impact.casesForICUByRequestedTime = Math.trunc(0.05 * impact.infectionsByRequestedTime);
+  severeImpact.casesForICUByRequestedTime = Math.trunc(0.05 * severeImpact.infectionsByRequestedTime);
+
+  // ch3, p2
+  // determine 2 % of infectionsByRequestedTime.This is the estimated number of severe positive
+  // cases that will require ventilators.Represent this as casesForVentilatorsByRequestedTime and
+  // make it a part of your estimation output
+  impact.casesForVentilatorsByRequestedTime = Math.trunc(0.02 * impact.infectionsByRequestedTime);
+  severeImpact.casesForVentilatorsByRequestedTime = Math.trunc(0.02 * severeImpact.infectionsByRequestedTime);
+
+  // Finally, given the estimated number of infected people by the requested time and the AVG daily income
+  // of the region, estimate how much money the economy is likely to lose daily, over the said period of time.
+  // Save this as dollarsInFlight in your output data structure.If 65 % of the region(the majority) earn
+  // $1.5 a day, you can compute the average daily dollarsInFlight for a 30 day period as:
+  // (infectionsByRequestedTime x 0.65 x 1.5) / 30;
+  const elapsedTimeInDays = normalizeTimeInDays(time, unit);
+
+  impact.dollarsInFlight = Math.trunc((impact.infectionsByRequestedTime * 0.65 * input.region.avgDailyIncomeInUSD) / elapsedTimeInDays) / 30;
+  severeImpact.dollarsInFlight = Math.trunc((severeImpact.infectionsByRequestedTime * 0.65 * input.region.avgDailyIncomeInUSD) / elapsedTimeInDays);
 
 
   return {

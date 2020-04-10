@@ -55,6 +55,22 @@ const covid19ImpactEstimator = (data) => {
   const factor = getFactorFromDuration(time, unit);
   impact.infectionsByRequestedTime = impact.currentlyInfected * Math.pow(2, factor)
   severeImpact.infectionsByRequestedTime = impact.currentlyInfected * Math.pow(2, factor)
+  /**************************
+   * ********* CHALLENGE 2
+   */
+  // ch2, p1
+  // Determine 15 % of infectionsByRequestedTime
+  // Represent this as severeCasesByRequestedTime and
+  // make it a part of your estimation output
+  impact.severeCasesByRequestedTime = 0.15 * impact.infectionsByRequestedTime;
+  severeImpact.severeCasesByRequestedTime = 0.15 * severeImpact.infectionsByRequestedTime;
+
+  // Based on the above, the totalHospitalBeds input data, and your severeCasesByRequestedTime,
+  // estimate the number of available hospital beds for severe COVID - 19 positive patient
+  impact.hospitalBedsByRequestedTime = Math.trunc(impact.severeCasesByRequestedTime - (0.35 * input.totalHospitalBeds));
+  severeImpact.hospitalBedsByRequestedTime = Math.trunc(severeImpact.severeCasesByRequestedTime - (0.35 * input.totalHospitalBeds));
+
+
 
   return {
     data: input,

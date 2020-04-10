@@ -53,8 +53,8 @@ const covid19ImpactEstimator = (data) => {
   const unit = input.periodType;
 
   const factor = getFactorFromDuration(time, unit);
-  impact.infectedByRequestedTime = impact.currentlyInfected * Math.pow(2, factor)
-  severeImpact.infectedByRequestedTime = impact.currentlyInfected * Math.pow(2, factor)
+  impact.infectionsByRequestedTime = impact.currentlyInfected * Math.pow(2, factor)
+  severeImpact.infectionsByRequestedTime = impact.currentlyInfected * Math.pow(2, factor)
 
   return {
     data: input,

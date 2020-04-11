@@ -1,0 +1,42 @@
+*{
+  font-family: Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+.container{
+  width: 80%;
+  margin: auto;
+  display: block;
+}
+.clearfix::after{
+  content: '';
+  display: block;
+  clear: both;
+}
+
+#navbar{
+  padding: 20px 0px;
+  background-color: #e17dcf;
+}
+
+.estimate-form{
+  margin: auto;
+  padding: 15px 20px;
+}
+.form-group{
+  text-align: left;
+  margin: 12px auto;
+}
+
+.form-group .form-control{
+  display: block;
+  /* width: 80%; */
+  padding: 10px 15px;
+  font-size: 1.2rem;
+  font-weight: normal;
+  border: 1px solid #333;
+}
+.form-group label{
+  display: block;
+  margin-bottom: 10px;
+}

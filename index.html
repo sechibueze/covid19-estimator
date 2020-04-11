@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>COVID19 Impact Estimator</title>
+  <link rel="stylesheet" href="./css/main.css" />
+  <script src="./js//estimator.js"></script>
+</head>
+
+<body>
+  <nav id="navbar">
+    <div class="container">
+      <h1> COVID19 Impact Estimator</h1>
+    </div>
+  </nav>
+  <form class="estimate-form">
+    <div class="result">
+      <div class="param">
+        <span class="result-label">Dollars in Flight</span>
+        <div class="estimate"></div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="population">Population</label>
+      <input type="tel" name="population" class="form-control" data-population="" />
+    </div>
+
+    <div class="form-group">
+      <label for="timeToElapse">Time to elapse</label>
+      <input type="tel" name="timeToElapse" class="form-control" data-time-to-elapse="" />
+    </div>
+
+    <div class="form-group">
+      <label for="periodType">Period type</label>
+      <select name="periodTypes" class="form-control" data-period-type="">
+        <option value="days">Days</option>
+        <option value="weeks">Weeks</option>
+        <option value="months">Months </option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="reportedCases">Reported cases</label>
+      <input type="tel" name="reportedCases" class="form-control" data-reported-cases="" />
+    </div>
+
+    <div class="form-group">
+      <label for="totalHospitalBeds">Total hospital beds</label>
+      <input type="tel" name="totalHospitalBeds" class="form-control" data-total-hospital-beds="" />
+    </div>
+
+
+    <div class="form-group">
+      <button type="submit" data-go-estimate="" class="form-control"> Estimate </button>
+    </div>
+  </form>
+  <script src="./js//main.js"></script>
+</body>
+
+</html>

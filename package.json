@@ -1,0 +1,16 @@
+{
+  "name": "covid19-estimator-api",
+  "version": "1.0.0",
+  "description": "A COVID19 impact estimator api",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server",
+    "dev": "nodemon server"
+  },
+  "keywords": [],
+  "author": "Samuel Chibueze",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}

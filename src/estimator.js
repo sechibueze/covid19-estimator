@@ -15,8 +15,9 @@
 /** *****
  * **** UTILITY FUNCTIONS
  */
-const normalizeTimeInDays = (time, unit = 'days') => {
-  switch (unit.toLowerCase()) {
+const normalizeTimeInDays = (time, typeOfPeriod) => {
+  const unit = typeOfPeriod.toLowerCase();
+  switch (unit) {
     case 'weeks':
       return time * 7;
     case 'months':
@@ -108,13 +109,13 @@ const covid19ImpactEstimator = (data) => {
   // $1.5 a day, you can compute the average daily dollarsInFlight for a 30 day period as:
   // (infectionsByRequestedTime x 0.65 x 1.5) / 30;
   const elapsedTimeInDays = normalizeTimeInDays(time, unit);
-
   impact.dollarsInFlight = Math.trunc(
-    (impact.infectionsByRequestedTime * 0.65 * input.region.avgDailyIncomeInUSD)
+    (impact.infectionsByRequestedTime * input.region.avgDailyIncomePopulation
+       * input.region.avgDailyIncomeInUSD)
     / elapsedTimeInDays
   );
   severeImpact.dollarsInFlight = Math.trunc(
-    (severeImpact.infectionsByRequestedTime * 0.65
+    (severeImpact.infectionsByRequestedTime * input.region.avgDailyIncomePopulation
       * input.region.avgDailyIncomeInUSD) / elapsedTimeInDays
   );
 

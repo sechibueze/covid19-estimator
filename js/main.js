@@ -12,5 +12,13 @@ const data = {
   totalHospitalBeds: 1380614
 };
 
+const goEstimate = (e) => {
+  e.preventDefault();
+  // TODO
+  // set data props from form fields
+}
+const form = document.querySelector('.estimate-form');
+form.addEventListener('submit', goEstimate);
 const output = covid19ImpactEstimator(data);
-console.log('%c estimate :: ', 'color: green', output);
+
+

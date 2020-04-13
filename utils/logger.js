@@ -28,10 +28,14 @@ let demoLogger = (req, res, next) => { //middleware function
   let url = req.url;
   let status = res.statusCode;
   const start = process.hrtime();
-  const durationInMilliseconds = getActualRequestDurationInMilliseconds(start).toFixed(2);
+  const durationInMilliseconds = Math.ceil(getActualRequestDurationInMilliseconds(start));
+  const integerDuration = Math.ceil(durationInMilliseconds);
+  const normalizedTime = integerDuration < 10 ? `0${integerDuration}` : integerDuration;
+  console.log('normalizedTime ::', normalizedTime);
+  console.log('integerDuration ::', integerDuration);
   console.log('durationInMilliseconds ::', durationInMilliseconds);
   // let log = `[${formatted_date}] ${method}:${url} ${status} ${durationInMilliseconds.toLocaleString()} ms`;
-  let log = `${method}  ${url}  ${status}  ${durationInMilliseconds.toLocaleString()}ms`;
+  let log = `${method}  ${url}  ${status}  ${normalizedTime}ms`;
   // console.log(log);
   fs.appendFile("request_logs.txt", log + "\n", err => {
     if (err) {

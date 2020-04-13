@@ -30,7 +30,7 @@ let demoLogger = (req, res, next) => { //middleware function
   const start = process.hrtime();
   const durationInMilliseconds = getActualRequestDurationInMilliseconds(start);
   // let log = `[${formatted_date}] ${method}:${url} ${status} ${durationInMilliseconds.toLocaleString()} ms`;
-  let log = `${method}   ${url}    ${status}   ${durationInMilliseconds.toLocaleString()} ms`;
+  let log = `${method} ${url} ${status} ${durationInMilliseconds.toLocaleString()}ms`;
   console.log(log);
   fs.appendFile("request_logs.txt", log + "\n", err => {
     if (err) {

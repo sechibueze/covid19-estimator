@@ -1,6 +1,7 @@
 const express = require('express');
 const xml = require('xml2js');
 const fs = require("fs");
+const path = require("path");
 const Estimator = require('./utils/estimator');
 const demoLogger = require('./utils/logger');
 const app = express();
@@ -49,18 +50,19 @@ app.post('/api/v1/on-covid-19/xml', demoLogger, (req, res) => {
 });
 
 app.get('/api/v1/on-covid-19/logs', (req, res) => {
-  // set xml headers
-  res.type('text/plain');
+  // set text headers
+  res.set("Content-Type", 'text/plain');
+  res.status(200);
+  //  return res.sendFile(path.resolve(__dirname, 'request_logs.txt'));
   // read file content
   fs.readFile('request_logs.txt', 'utf8', function (err, fileContent) {
     if (err) throw err;
 
-    console.log(fileContent);
+    // console.log(fileContent);
+    // console.log(res.headers)
 
-    return res.status(200).send(fileContent);
+    return res.send(fileContent);
   });
-  
-  
 });
 
 app.get('/', (req, res) => {

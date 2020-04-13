@@ -2,3 +2,6 @@ POST   /api/v1/on-covid-19    200   0.114 ms
 POST   /api/v1/on-covid-19/xml    200   0.018 ms
 POST   /api/v1/on-covid-19/json    200   0.025 ms
 GET   /api/v1/on-covid-19/logs    200   0.026 ms
+POST   /api/v1/on-covid-19    200   0.475 ms
+POST   /api/v1/on-covid-19/json    200   0.019 ms
+POST   /api/v1/on-covid-19/xml    200   0.02 ms
